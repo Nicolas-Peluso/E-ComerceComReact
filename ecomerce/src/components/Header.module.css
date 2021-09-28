@@ -1,0 +1,31 @@
+.nav{
+    background: transparent;
+    padding: 20px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.13);
+}
+.nav ul{
+    display: flex;
+    list-style-type: none;
+    justify-content: space-between;
+}
+.nav ul li img{
+    width: 90px;
+}
+.nav ul li button{
+    padding: 12px;
+    width: 150px;
+    border-radius: 4px;
+    background: #8977ffc5;
+    font-family: serif, Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: lighter;
+    font-size: 1.2em;
+    color: white;
+    border: none;
+    cursor: pointer;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.535);
+}
+.nav ul li button:hover{
+    transition: .5s transform;
+    transform: scale(1.1);
+    background: #8877FF;
+}

@@ -1,0 +1,49 @@
+.Container{
+    width: 60%;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(200px, 400px));
+    gap: 34px;
+    padding: 10px;
+    margin: 250px auto 0 auto;
+}
+
+.Container img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.Container .Card{
+    cursor: pointer;
+    padding: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.282);
+    border-radius: 8px;
+    transition: .5s;
+}
+.Container .ContainerText .preco{
+    color: rgb(100, 97, 0);
+    font-size: 1.5em;
+    font-family: serif,Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+
+}
+
+.Container .Card:hover{
+    transform: scale(1.1);
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.576);
+
+}
+
+.Container .ContainerText .nome{
+    font-family: Arial, Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 2em;
+    margin: 10px 0px;
+    font-weight: bolder;
+    color: rgb(33, 33, 33);
+}
+
+.Container .ContainerText .desc{
+    font-size: 1.1em;
+    font-family: sans-serif, Verdana, Geneva, Tahoma, sans-serif;   
+    color: rgb(49, 49, 49);
+}
