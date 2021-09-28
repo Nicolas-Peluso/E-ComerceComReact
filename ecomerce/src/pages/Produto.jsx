@@ -3,17 +3,20 @@ import Style from "./Produto.module.css"
 import useFetch from "../Hook/useFetch"
 import Loading from '../components/Loading'
 import ErroPage from './ErroPage'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
-function Produto() {
+function Produto(props) {
     const { request, data, error, loading } = useFetch()
-    const params = useParams()
+    const Context = React.createContext()
+    console.log(Context)
 
+    const navigate = useNavigate()
     React.useEffect(() => {
         request(`https://ranekapi.origamid.dev/json/api/produto`)
     }, [request])
 
     function handleClick(name) {
+        props.value(name)
         navigate(`/produto/${name}`)
     }
 

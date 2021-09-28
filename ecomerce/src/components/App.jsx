@@ -1,19 +1,27 @@
 import React from 'react'
 import Produto from '../pages/Produto'
-import { Router, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import "./App.css"
 import Header from './Header'
 import ProductDetail from '../pages/ProductDetail'
+export const Context = React.createContext()
+
 
 function App() {
+    const [ProductName, setProductName] = React.useState()
+    function pro(product) {
+        setProductName(product)
+    }
     return (
-        <>
-            <Router>
+        <BrowserRouter>
+            <Context.Provider value={{ produtoNome: ProductName }}>
                 <Header />
-                <Route path="/" element={<Produto />} />
-                <Route path="/product/:id" element={<ProductDetail />} />
-            </Router>
-        </>
+                <Routes>
+                    <Route path="/" element={<Produto value={pro} />} />
+                    <Route path="/produto/:id" element={<ProductDetail />} />
+                </Routes>
+            </Context.Provider>
+        </BrowserRouter>
     )
 }
 
