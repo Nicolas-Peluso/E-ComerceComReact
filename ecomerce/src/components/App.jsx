@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import "./App.css"
 import Header from './Header'
 import ProductDetail from '../pages/ProductDetail'
+import ErroPage from '../pages/ErroPage'
 export const Context = React.createContext()
 
 
@@ -19,6 +20,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<Produto value={pro} />} />
                     <Route path="/produto/:id" element={<ProductDetail />} />
+                    <Route path="*" element={<ErroPage />} />
                 </Routes>
             </Context.Provider>
         </BrowserRouter>

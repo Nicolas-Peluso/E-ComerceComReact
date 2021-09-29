@@ -5,6 +5,7 @@ import { Context } from "../components/App"
 import useFetch from "../Hook/useFetch"
 import Loading from "../components/Loading"
 import ErroPage from "./ErroPage"
+import Comprar from "../components/Comprar"
 
 function ProductDetail() {
     const params = useParams()
@@ -15,23 +16,27 @@ function ProductDetail() {
         request(`https://ranekapi.origamid.dev/json/api/produto/${produtoNome}`)
     }, [request])
 
+    console.log(data)
+
     return (
         <div className={Style.ContainerDetail}>
             {loading && <Loading />}
             {erro && <ErroPage />}
             {data && data.fotos && <>
-                {data.fotos.map(foto => (
-                    <img src={foto.src} alt="desculpe nao foi possivel encontrar" />
-                ))}
+                <div className={Style.containerFotos}>
+                    {data.fotos.map(foto => (
+                        <img src={foto.src} alt="desculpe nao foi possivel encontrar" key={foto.src} />
+                    ))}
+                </div>
                 <div className={Style.ContainerText}>
                     <p className={Style.nome}>{data.nome}</p>
                     <p className={Style.preco}>R${data.preco[0]}.{data.preco.slice(1, data.preco.length)}</p>
                     <p className={Style.descricao}>{data.descricao}</p>
+                    <button className={Style.comprar}>Comprar</button>
                 </div>
-                <button className={Style.comprar}>Comprar</button>
+                <Comprar />
             </>
             }
-
         </div>
     )
 }

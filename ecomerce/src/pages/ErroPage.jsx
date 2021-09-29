@@ -3,8 +3,8 @@ import React from 'react'
 
 function ErroPage() {
     return (
-        <div>
-
+        <div className={Style.message}>
+            desculpe algo deu errado
         </div>
     )
 }
