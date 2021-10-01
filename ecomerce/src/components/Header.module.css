@@ -12,7 +12,8 @@
 .nav ul li img{
     width: 90px;
 }
-.nav ul li button{
+
+.button{
     padding: 8px;
     width: 180px;
     border-radius: 4px;
@@ -25,7 +26,8 @@
     cursor: pointer;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.535);
 }
-.nav ul li button:hover{
+
+.button:hover{
     transition: .5s transform;
     transform: scale(1.1);
     background: #8877FF;

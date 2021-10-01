@@ -13,7 +13,7 @@ function Header() {
                         </Link>
                     </li>
                     <li>
-                        <button>Vender / Login</button>
+                        <button className={Style.button}>Vender / Login</button>
                     </li>
                 </ul>
             </nav>
