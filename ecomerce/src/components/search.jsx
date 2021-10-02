@@ -1,11 +1,19 @@
 import React from 'react'
 import style from "./search.module.css"
+import { useNavigate } from "react-router-dom"
+import { Context } from '../UserContext'
 
-function Search() {
+function Search(props) {
+    const Navigate = useNavigate()
+
+    const { Search, erro, setResults, data } = React.useContext(Context)
     const [search, setSearch] = React.useState('')
     function handleSubmit(e) {
         e.preventDefault()
-        console.log(search)
+        Search(search)
+        setResults(data)
+        Navigate(`/pesquisa/${search}`)
+        props.Results = data
     }
     function handleChange({ target }) {
         setSearch(target.value)

@@ -3,13 +3,11 @@ import Style from "./Produto.module.css"
 import useFetch from "../Hook/useFetch"
 import Loading from '../components/Loading'
 import ErroPage from './ErroPage'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import Search from '../components/search'
 
 function Produto(props) {
     const { request, data, error, loading } = useFetch()
-    const Context = React.createContext()
-    console.log(Context)
 
     const navigate = useNavigate()
     React.useEffect(() => {
@@ -18,13 +16,14 @@ function Produto(props) {
 
     function handleClick(name) {
         props.value(name)
+        sessionStorage.setItem("produtoAtual", name)
         navigate(`/produto/${name}`)
     }
 
     return (
         <>
             <Search />
-            <div className={Style.Container}>
+            <div className={`${Style.Container} container`}>
                 {loading && <Loading />}
                 {error && <ErroPage />}
                 {data && data.map(product => (
@@ -37,6 +36,8 @@ function Produto(props) {
                         </div>
                     </div>
                 ))}
+
+
             </div>
         </>
     )

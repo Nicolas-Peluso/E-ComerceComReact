@@ -20,6 +20,9 @@ function useForm(type) {
     const [CepData, setCepData] = React.useState(false)
 
     function onChange({ target }) {
+        if (type === "Cep" && target.value.length === 8) {
+            GetCep(target.value)
+        }
         setCepData(false)
         setErro(null)
         setValue(target.value)
@@ -36,20 +39,20 @@ function useForm(type) {
                 logradouro: response.logradouro,
             })
         }
+        console.log(response)
     }
 
     async function Validar(value) {
         if (value.length === 0) {
             setErro("preencha um valor")
         }
-        if (type === false) return true
-        else {
-            setErro(null)
-            if (!Teste[type].regexp.test(value)) {
-                setErro(Teste[type].message)
-            } else if (type === 'Cep' && error === null) {
-                console.log("cep ok", value)
-                GetCep(value)
+        if (value) {
+            if (type === false) return true
+            else {
+                setErro(null)
+                if (!Teste[type].regexp.test(value)) {
+                    setErro(Teste[type].message)
+                }
             }
         }
     }

@@ -5,24 +5,28 @@ import "./App.css"
 import Header from './components/Header'
 import ProductDetail from './pages/ProductDetail'
 import ErroPage from './pages/ErroPage'
-export const Context = React.createContext()
-
+import UserContext from './UserContext'
+import Login from './components/login/Login'
+import Pesquisa from './pages/Pesquisa'
 
 function App() {
     const [ProductName, setProductName] = React.useState()
     function pro(product) {
         setProductName(product)
     }
+
     return (
         <BrowserRouter>
-            <Context.Provider value={{ produtoNome: ProductName }}>
+            <UserContext>
                 <Header />
                 <Routes>
                     <Route path="/" element={<Produto value={pro} />} />
-                    <Route path="/produto/:id" element={<ProductDetail />} />
+                    <Route path="/produto/:id" element={<ProductDetail ProductName={ProductName} />} />
                     <Route path="*" element={<ErroPage />} />
+                    <Route path="login/*" element={<Login />} />
+                    <Route path="/pesquisa/:id" element={<Pesquisa value={pro} />} />
                 </Routes>
-            </Context.Provider>
+            </UserContext>
         </BrowserRouter>
     )
 }

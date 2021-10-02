@@ -1,0 +1,87 @@
+.container{
+    background: rgb(255, 255, 255);
+    height: 800px;
+    width: 100%;
+    display: block;
+    transition: trasform .5s;
+    opacity: 0;
+}
+.container h1{
+    text-align: center;
+    margin: 20px;
+    font-size: 2em;
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+    font-weight: lighter;
+}
+
+.form{
+    margin: 0px auto;    
+    padding: 10px;
+    width: 50%;
+    font-family: Arial, Helvetica, sans-serif;
+    flex-direction: column;
+    position: relative;
+}
+
+.form input{
+    display: block;
+    padding: 15px;
+    margin: 20px auto;
+    width: 50% !important;
+}
+
+.form label{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: space-around;
+    margin: auto;
+    font-size: 2em;
+}
+.form .button{
+    display: block;
+    padding: 8px;
+    width: 100px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    margin: 0px auto;
+    background-color: #6655DD;
+    color: #dfdaff;
+    font-size: 1.5rem;
+    font-family: serif,Arial, Helvetica, sans-serif;
+    margin: auto;
+}
+.cadastroCont{
+    margin: 50px 0;
+    display: block;
+    height: 100%;
+}
+.cadastroCont h1{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: lighter;
+
+    font-size: 1.5rem;
+} 
+.cadastroCont button{
+    display: block;
+    margin: 0px auto;
+}
+.cadastroCont form{
+    align-items: center !important;
+    width: auto;
+
+}
+.cadastroCont form label{
+    display: block;
+    margin: 0;
+}
+.cadastroCont form input{
+    width: 150%;
+}
+
+.cadastroCont form button{
+    margin: 20px;
+    max-width: 150px;
+}

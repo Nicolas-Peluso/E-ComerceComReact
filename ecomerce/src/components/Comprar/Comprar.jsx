@@ -1,14 +1,13 @@
 import React from 'react'
 import Style from "./Comprar.module.css"
-import UseInput from '../Hook/useInput'
-import useForm from '../Hook/useForm'
-import { Context } from '../App'
-import StyleBtn from "../components/Header.module.css"
-import Modal from './modal/modal'
-
-function Comprar() {
-    const e = React.useContext(Context)
+import UseInput from '../../Hook/useInput'
+import useForm from '../../Hook/useForm'
+import StyleBtn from "../Header.module.css"
+import Modal from '../modal/modal'
+import { Context } from "../../UserContext"
+function Comprar({ title, TextButton }) {
     const [classNam, setClassNam] = React.useState(false)
+    const { userCadastro, data, loading, erro } = React.useContext(Context)
 
     const cep = useForm("Cep")
     const senha = useForm("senha")
@@ -20,36 +19,38 @@ function Comprar() {
     const cidade = useForm(false)
     const estado = useForm(false)
 
+
     React.useEffect(() => {
-        if (cep.error === null) {
+        if (cep.CepData) {
             rua.setValue(cep.CepData.logradouro)
             bairro.setValue(cep.CepData.Bairro)
             cidade.setValue(cep.CepData.localidade)
             estado.setValue(cep.CepData.uf)
-            console.log("mnçnn")
         }
-    }, [cep])
+    }, [cep.CepData])
 
     function handleSubmit(e) {
         e.preventDefault()
-        if (nome.error === null &&
-            senha.error === null &&
-            cep.error === null &&
-            numero.error === null &&
-            estado.error === null &&
-            rua.error === null &&
-            email.error === null &&
-            bairro.error === null &&
-            cidade.error === null) {
-
-            console.log(nome.value)
-            console.log(email.value)
-            console.log(senha.value)
-            console.log(cep.value)
-            console.log(rua.value)
-            console.log(bairro.value)
-            console.log(cidade.value)
-            console.log(estado.value)
+        if (!!nome.error === false &&
+            !!senha.error === false &&
+            !!cep.error === false &&
+            !!numero.error === false &&
+            !!estado.error === false &&
+            !!rua.error === false &&
+            !!email.error === false &&
+            !!bairro.error === false &&
+            !!cidade.error === false) {
+            userCadastro(
+                bairro.value,
+                cep.value,
+                cidade.value,
+                email.value,
+                estado.value,
+                nome.value,
+                numero.value,
+                rua.value,
+                senha.value
+            )
             return true
         } setClassNam(true)
     }
@@ -57,13 +58,12 @@ function Comprar() {
     {
         classNam && setTimeout(() => {
             setClassNam(false)
-            console.log("nnn")
-        }, 2000)
+        }, 6000)
     }
 
     return (
-        <div className={Style.ContainerFormComprar}>
-            <h1 style={{ fontFamily: "arial" }}>Enderço de Envio</h1>
+        <div className={`${Style.ContainerFormComprar} container`}>
+            <h1 style={{ fontFamily: "arial" }}>{title ? title : 'Endereço de envio'}</h1>
             <form onSubmit={handleSubmit} className={Style.form}>
                 <UseInput type="text"
                     name="userName"
@@ -71,24 +71,26 @@ function Comprar() {
                     {...nome}
                 /> <br />
                 {nome.error && <p>{nome.error}</p>}
-                <UseInput type="email"
+                <UseInput type="text"
                     name="Email"
                     label="Email"
                     {...email}
                 /> <br />
-                {email.error && <p>{email.error}</p>}
+                {classNam && email.error && <Modal erro={email.error} classNam={classNam} tope={250} />}
                 <UseInput type="password"
                     name="senha"
                     label="senha"
                     {...senha}
                 /> <br />
-                {senha.error && <p>{senha.error}</p>}
+                {classNam && senha.error && <Modal erro={senha.error} classNam={classNam} />}
                 <UseInput type="text"
                     name="cep"
                     label="cep"
                     {...cep}
                 /> <br />
-                {cep.error && <p>{cep.error}</p>}
+
+                {classNam && cep.error && <Modal erro={cep.error} classNam={classNam} tope={400} />}
+
                 <UseInput type="text"
                     name="Rua"
                     label="rua"
@@ -123,8 +125,10 @@ function Comprar() {
                     {...estado}
                 />
                 {estado.error && <p>{estado.error}</p>}
-                {classNam && <Modal erro="Todos os Campos Devem Estar Preenchidos " classNam={classNam} />}
-                <button type="submit" className={`${StyleBtn.button} ${Style.button}`}>finalizar compra</button>
+                {loading ? <button disabled className={`${StyleBtn.button} ${Style.button}`} style={{ opacity: 0.5 }}>CARREGANDO...</button>
+                    : <button type="submit" className={`${StyleBtn.button} ${Style.button}`}>{TextButton ? TextButton : 'finalizar compra'}</button>
+                }
+                {erro && erro.message}
             </form>
         </div>
     )

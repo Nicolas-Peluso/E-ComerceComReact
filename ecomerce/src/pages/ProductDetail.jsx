@@ -1,26 +1,29 @@
 import Style from "./ProductDetail.module.css"
 import React from 'react'
 import { useParams } from "react-router-dom"
-import { Context } from "../App"
 import useFetch from "../Hook/useFetch"
 import Loading from "../components/Loading"
 import ErroPage from "./ErroPage"
-import Comprar from "../components/Comprar"
+import Comprar from "../components/Comprar/Comprar"
 
-function ProductDetail() {
+function ProductDetail({ ProductName }) {
     const params = useParams()
-    const { produtoNome } = React.useContext(Context)
     const { request, data, loading, erro } = useFetch()
     const [ComprarForm, setComprarForm] = React.useState(false)
 
     React.useEffect(() => {
-        request(`https://ranekapi.origamid.dev/json/api/produto/${produtoNome}`)
+        const ProductNamer = sessionStorage.getItem("produtoAtual")
+        if (ProductNamer)
+            ProductName = ProductNamer
+        request(`https://ranekapi.origamid.dev/json/api/produto/${ProductName}`)
     }, [request])
 
-    console.log(data)
+    React.useEffect(() => {
+
+    }, [])
 
     return (
-        <div className={Style.ContainerDetail}>
+        <div className={`${Style.ContainerDetail} container`}>
             {loading && <Loading />}
             {erro && <ErroPage />}
             {data && data.fotos && <>
