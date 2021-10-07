@@ -15,9 +15,6 @@ function LoginCreate() {
 
     function handleSubmite(e) {
         e.preventDefault()
-        console.log(username.value)
-        console.log(password.value)
-
         if (!!username.error === false && !!password.error === false) {
             TOKEN(password.value, username.value)
             console.log(erro)
@@ -40,7 +37,7 @@ function LoginCreate() {
             </form>
 
             <div className={Style.cadastroCont}>
-                <h1 className={Style.titleCadastro}>Nao possui cadastro? cadastrese no site</h1>
+                <h1 className={Style.titleCadastro}>crie sua conta</h1>
                 {cadastro === false && <button onClick={() => setCadastro(true)} className="button">Cadastrar</button>}
                 {cadastro && <Cadastro />}
             </div>

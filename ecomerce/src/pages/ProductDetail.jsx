@@ -5,6 +5,7 @@ import useFetch from "../Hook/useFetch"
 import Loading from "../components/Loading"
 import ErroPage from "./ErroPage"
 import Comprar from "../components/Comprar/Comprar"
+import Head from '../components/head/head'
 
 function ProductDetail({ ProductName }) {
     const params = useParams()
@@ -24,6 +25,8 @@ function ProductDetail({ ProductName }) {
 
     return (
         <div className={`${Style.ContainerDetail} container`}>
+            <Head head={ProductName} />
+
             {loading && <Loading />}
             {erro && <ErroPage />}
             {data && data.fotos && <>

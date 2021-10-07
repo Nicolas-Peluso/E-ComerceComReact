@@ -9,10 +9,12 @@
 .container h1{
     text-align: center;
     margin: 20px;
-    font-size: 2em;
+    font-size: 2rem;
     font-family: Arial, Helvetica, sans-serif;
     text-transform: uppercase;
-    font-weight: lighter;
+    font-weight: bold;
+    color: #8877FF;
+
 }
 
 .form{
@@ -36,8 +38,7 @@
     width: 100%;
     height: 100%;
     justify-content: space-around;
-    margin: auto;
-    font-size: 2em;
+    font-size: 1rem;
 }
 .form .button{
     display: block;

@@ -63,6 +63,8 @@ function UserContext({ children }) {
             request = await fetch(url, options)
             response = await request.json()
             if (request.ok === false) throw new Error(response.message)
+            if (response === []) return setErro("Desculpe Nao encontramos nenhum resultado")
+            setResults(response)
         } catch (erro) {
             setErro(erro)
             setLoading(false)

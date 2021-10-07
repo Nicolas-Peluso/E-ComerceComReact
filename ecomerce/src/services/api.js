@@ -6,7 +6,7 @@ export function POST_TOKEN(body) {
         options: {
             method: "POST",
             header: {
-                'Content-Type': "application/json;charset=UTF-8"
+                'Content-Type': "application/json"
             },
             body: JSON.stringify(body)
         }
@@ -19,7 +19,7 @@ export function POST_USER(body) {
         options: {
             method: "POST",
             header: {
-                'Content-Type': "application/json;charset=UTF-8"
+                'Content-Type': "application/json"
             },
             body: JSON.stringify(body)
         }

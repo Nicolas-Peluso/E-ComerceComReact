@@ -5,6 +5,7 @@ import Loading from '../components/Loading'
 import ErroPage from './ErroPage'
 import { useNavigate } from 'react-router-dom'
 import Search from '../components/search'
+import Head from '../components/head/head'
 
 function Produto(props) {
     const { request, data, error, loading } = useFetch()
@@ -23,6 +24,7 @@ function Produto(props) {
     return (
         <>
             <Search />
+            <Head head="Produtos" />
             <div className={`${Style.Container} container`}>
                 {loading && <Loading />}
                 {error && <ErroPage />}
